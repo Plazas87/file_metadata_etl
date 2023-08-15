@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  etl:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./.env
+    command: 
+      - ${INITIAL_DATE}  
+      - ${END_DATE} 
+    volumes:
+      - type: bind
+        source: ./video_data
+        target: /home/app/video_data
+
+
+  database:
+    image: postgres:15
+    container_name: satlink_video_db
+    ports:
+      - 5432:5432
+    volumes:
+      - satlink_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+
+volumes:
+  satlink_data:
