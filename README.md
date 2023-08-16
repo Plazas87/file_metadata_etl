@@ -33,17 +33,17 @@ Create a new file in the project root called `.env`
 
 Please, copy the content of the `.env_example` to the new `.env` and replace with your values if required.
 
-Start the ETL and the Postgres databese to store the video
+Start the ETL and the Postgres database to store the video
 information. Plase pay attention to the input format for dates:
-DD/MM/YYY 
+`DD/MM/YYY`
 ```bash
 make run-etl 01/01/2023 10/01/2023
 # Or, without make
 export INITIAL_DATE="01/01/2023" END_DATE="05/01/2023" && docker-compose up
 ```
-If you want to modify the current format, you can so it by changing the env variable `DATE_INPUT_FORMAT="%d/%m/%Y" # -> DD/MM/YYYY` within the `.env` file.
+If you want to modify the current format, you can do it by changing the env variable `DATE_INPUT_FORMAT="%d/%m/%Y" # -> DD/MM/YYYY` within the `.env` file.
 
-Stop the applications and remove its containers
+Stop the application and remove containers
 ```bash
 docker-compose down
 # Or, using make
